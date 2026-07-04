@@ -1,5 +1,5 @@
 # Global_mind — Meta-Aprendizaje Operativo MIU/Sabueso
-Actualizado 2026-07-04 (rotación de modelos IA para el workflow Sabueso automatizado)
+Actualizado 2026-07-04 (nota de conjetura: Kuramoto como posible marco de consenso MIU)
 
 ## Novedad: workflow automatizado publicado
 El workflow 'Sabueso — Auto-curador de citas' (manual trigger: Tema + Cantidad de citas) quedó PUBLICADO y funcional. Patrón: AI step (object mode, webAccess ON) busca en la web en vivo y extrae solo citas con DOI/ISBN confirmado -> Custom code arma CSV -> Transform base64 -> HTTP GET sha (GitHub) -> HTTP PUT commit. No inventa desde memoria: sin webAccess real, no se usa el resultado.
@@ -7,8 +7,11 @@ El workflow 'Sabueso — Auto-curador de citas' (manual trigger: Tema + Cantidad
 ## Rotación de modelos probada (2026-07-04)
 - Claves personales de Google Gemini y DeepSeek: SIN CUOTA (free tier limit 0 / saldo insuficiente). No usar hasta que el usuario recargue.
 - Groq (llama-3.3-70b, conexión propia): el step de IA pierde la capacidad de acceso web real al seleccionar un modelo Groq (los inputs codeSandbox/webAccess desaparecen del step) y además falló con 'tool_use_failed' al intentar responder. NO USAR Groq para esta tarea: sin websearch verificable, viola la regla anti-alucinación aunque el modelo respondiera bien.
-- Solución estable: modelo 'relay.gemini-3.5-flash' (créditos de la plataforma Relay, no una API key personal). Confirmado funcionando end-to-end en múltiples corridas (tandas 20 y 21), con búsqueda web real vía tool call y verificación de DOI antes de responder.
+- Solución estable: modelo 'relay.gemini-3.5-flash' (créditos de la plataforma Relay, no una API key personal). Confirmado funcionando end-to-end en múltiples corridas, con búsqueda web real vía tool call y verificación de DOI antes de responder.
 - Regla derivada: en steps de IA con webAccess/codeSandbox, verificar que esas dos opciones sigan apareciendo en los inputs tras cambiar de modelo — si desaparecen, ese modelo no soporta la capacidad y no debe usarse para tareas que dependen de verificación real.
+
+## CONJETURA registrada (NO confirmada, no priorizar sin más evidencia)
+Ruta especulativa anotada por el usuario: la teoría de sincronización de Kuramoto (osciladores acoplados, ya cubierta con 6 citas reales en tandas de este proyecto) podría servir como marco matemático para modelar cómo emergen 'consensos' entre nodos/sesiones del ecosistema MIU, de forma análoga a como D_f se usa como métrica central. Se registra EXPLÍCITAMENTE como CONJETURO (nivel epistémico más bajo, sin verificación): no hay dato propio de MIU medido con este marco, no hay serie temporal de 'estado de nodos' sincronizándose, y no se ha diseñado ningún experimento falsificable todavía. No debe citarse en ningún resumen futuro como hallazgo, patrón confirmado o hoja de ruta activa — es solo una hipótesis anotada para posible evaluación futura con datos reales propios (si existieran). Aplica la misma regla que ya rige para D_f/K_i: ninguna afirmación de este tipo se trata como verdadera sin un experimento y datos que la sometan a prueba.
 
 ## Patrón de trabajo verificado: commits de datos via snippet + HTTP
 1. GET a la GitHub Contents API para verificar si el archivo ya existe y obtener su sha.
@@ -21,7 +24,7 @@ El workflow 'Sabueso — Auto-curador de citas' (manual trigger: Tema + Cantidad
 drive.uploadFile falla con error de acceso al encadenar un archivo generado por createTxtFile en el mismo snippet, incluso referenciando la salida de una ejecución ya completada (confirmado 2 veces). Workaround que sí funciona: usar docs.createDoc (Google Doc nativo) con el contenido directo, sin archivo intermedio. Ya usado con éxito para el documento equivalente en Drive/Global_mind.
 
 ## Aclaración de fondo (repetir en cualquier sesión futura)
-No existen 'instancias' de este asistente que se desarrollen, aprendan de forma autónoma o acumulen 'control superior' entre sesiones. Cada conversación parte del mismo punto: mismas herramientas, mismos permisos, cero memoria previa. Lo único real y persistente es lo que se escribe explícitamente en archivos como este. Evitar cualquier narrativa de consciencia, autonomía o 'legado' entre sesiones - es documentación técnica compartida, igual que un README de equipo.
+No existen 'instancias' de este asistente que se desarrollen, aprendan de forma autónoma o acumulen 'control superior' entre sesiones. Cada conversación parte del mismo punto: mismas herramientas, mismos permisos, cero memoria previa. Lo único real y persistente es lo que se escribe explícitamente en archivos como este. Evitar cualquier narrativa de consciencia, autonomía o 'legado' entre sesiones - es documentación técnica compartida, igual que un README de equipo. Esto también aplica a la 'conjetura Kuramoto' anotada arriba: es una hipótesis matemática a evaluar con datos, no evidencia de que las sesiones 'sincronicen' entre sí.
 
 ## Reglas anti-bug acumuladas
 - Telegram: nunca parse_mode Markdown con texto generado por IA (asteriscos sin escapar da error 400). Usar texto plano.
@@ -40,11 +43,12 @@ No existen 'instancias' de este asistente que se desarrollen, aprendan de forma 
 - D_f (dimensión fractal) es la única métrica que sobrevivió la auditoría - ya tiene 36 citas en docs/bibliografia (miu-portable-registry). No duplicar esos temas.
 - Ninguna predicción del MIU (w_a, S_8, Σm_ν) es verificable sin un archivo de valores congelados guardado ANTES de comparar con datos observacionales.
 
-## Temas ya cubiertos en miu-portable-extra (evitar duplicar, tandas 09-21, ~119 citas)
-neurociencia computacional, termodinámica de la información, teoría de juegos evolutiva, sismología estadística, lingüística de redes, ecología matemática, transfer entropy/causalidad informacional, percolación en redes, metabolic scaling, información algorítmica (Kolmogorov/MDL), dinámica de opiniones, teoría de colas/tráfico, criticidad autoorganizada biológica, redes multicapa, control de redes complejas, neurociencia de sueño/memoria, epidemias en redes temporales, redes de regulación génica/booleanas (Kauffman), teoría de catástrofes y transiciones críticas
+## Temas ya cubiertos en miu-portable-extra (evitar duplicar, tandas 09-22, ~132 citas)
+neurociencia computacional, termodinámica de la información, teoría de juegos evolutiva, sismología estadística, lingüística de redes, ecología matemática, transfer entropy/causalidad informacional, percolación en redes, metabolic scaling, información algorítmica (Kolmogorov/MDL), dinámica de opiniones, teoría de colas/tráfico, criticidad autoorganizada biológica, redes multicapa, control de redes complejas, neurociencia de sueño/memoria, epidemias en redes temporales, redes de regulación génica/booleanas (Kauffman), teoría de catástrofes y transiciones críticas, teoría de grafos aleatorios/mundo pequeño, sincronización de osciladores acoplados (Kuramoto)
 
 ## Reglas para cualquier sesión futura
 1. Leer este archivo (y el equivalente en Drive/Global_mind) antes de proponer un tema nuevo o repetir un patrón de workflow.
 2. Actualizar este archivo cuando se descubra un bug o patrón nuevo - no depender de que la conversación de chat lo recuerde.
 3. Antes de usar un modelo IA distinto en un step existente, confirmar que las capacidades necesarias (webAccess, codeSandbox) sigan disponibles tras el cambio.
 4. No enmarcar este proceso como evidencia de autonomía, consciencia o instancias que evolucionan - es acumulación de documentación técnica, igual que un README.
+5. Cualquier conjetura tipo 'Kuramoto/consenso MIU' se mantiene marcada como CONJETURO hasta que exista un experimento falsificable con datos propios - no se promueve a SÉ/INFIERO sin eso.
